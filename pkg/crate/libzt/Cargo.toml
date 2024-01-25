@@ -20,11 +20,11 @@ dirs = "5.0.1"
 anyhow = "1.0"
 clap = { version = "4.3.0", features = ["derive"] }
 clap-num = "1.0"
-env_logger = "0.10"
+env_logger = "0.11.0"
 parking_lot = { version = "0.12", features = ["send_guard"] }
 
 [build-dependencies]
-bindgen = "0.58"
+bindgen = "0.69.2"
 libc = "0.2"
 cmake = "0.1"
 
