@@ -16,7 +16,7 @@ jobs:
       run: git submodule update --init
 
     - name: Build Package
-      run: . .\build.ps1; Build-Host -BuildType "Release" -Arch "x64"
+      run: . .\build.ps1; Build-All
 
     - uses: actions/upload-artifact@v2
       with:
