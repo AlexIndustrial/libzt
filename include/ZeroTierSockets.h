@@ -197,7 +197,7 @@ typedef enum {
 /**
  * Error variable set after each `zts_*` socket call. Provides additional error context.
  */
-extern int zts_errno;
+extern ZTS_API int zts_errno;
 
 typedef enum {
     /** Operation not permitted */
@@ -1011,15 +1011,19 @@ typedef struct {
 //----------------------------------------------------------------------------//
 
 #if defined(_WIN32)
-#ifdef ADD_EXPORTS
-#define ZTS_API __declspec(dllexport)
+    #ifndef ZTS_STATIC
+        #ifdef ADD_EXPORTS
+            #define ZTS_API __declspec(dllexport)
+        #else
+            #define ZTS_API __declspec(dllimport)
+        #endif
+    #else
+        #define ZTS_API
+    #endif
+ 	#define ZTCALL __cdecl
 #else
-#define ZTS_API __declspec(dllimport)
-#endif
-#define ZTCALL __cdecl
-#else
-#define ZTS_API
-#define ZTCALL
+    #define ZTS_API
+    #define ZTCALL
 #endif
 
 //----------------------------------------------------------------------------//
