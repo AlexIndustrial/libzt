@@ -197,7 +197,7 @@ typedef enum {
 /**
  * Error variable set after each `zts_*` socket call. Provides additional error context.
  */
-extern int zts_errno;
+extern ZTS_API int zts_errno;
 
 typedef enum {
     /** Operation not permitted */
