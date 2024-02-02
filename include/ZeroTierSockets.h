@@ -1011,16 +1011,21 @@ typedef struct {
 //----------------------------------------------------------------------------//
 
 #if defined(_WIN32)
-#ifdef ADD_EXPORTS
-#define ZTS_API __declspec(dllexport)
+    #ifndef ZTS_STATIC
+        #ifdef ADD_EXPORTS
+            #define ZTS_API __declspec(dllexport)
+        #else
+            #define ZTS_API __declspec(dllimport)
+        #endif
+    #else
+        #define ZTS_API
+    #endif
+ 	#define ZTCALL __cdecl
 #else
-#define ZTS_API __declspec(dllimport)
+    #define ZTS_API
+    #define ZTCALL
 #endif
-#define ZTCALL __cdecl
-#else
-#define ZTS_API
-#define ZTCALL
-#endif
+
 
 //----------------------------------------------------------------------------//
 // Central API                                                                //
