@@ -7,7 +7,7 @@ env:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
       run: git submodule update --init
 
     - name: Build Package
-      run: . .\build.ps1; Build-All
+      run: . .\build.ps1; Build-Host -BuildType "Release" -Arch "x64"
 
     - uses: actions/upload-artifact@v2
       with:
